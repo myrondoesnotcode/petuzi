@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+<title>Uzi's Tel Aviv Run</title>
+<meta name="description" content="Flap Uzi through Tel Aviv. Collect pets and treats. Don't hit the Bauhaus." />
+<meta property="og:title" content="Uzi's Tel Aviv Run" />
+<meta property="og:description" content="Flap Uzi through Tel Aviv. Collect pets and treats." />
+<meta property="og:image" content="assets/uzi.jpg" />
+<meta name="theme-color" content="#ffd8a8" />
+<link rel="icon" href="assets/uzi.jpg" />
+<link rel="stylesheet" href="game.css" />
+</head>
+<body>
+
+  <div class="wrap">
+
+    <header class="bar">
+      <a class="back" href="./" aria-label="Back to Pet Uzi">‹ Pet Uzi</a>
+      <h1 class="name">Uzi's Tel Aviv Run</h1>
+      <button class="snd" id="sndBtn" type="button" aria-label="Toggle sound">🔊</button>
+    </header>
+
+    <div class="stage" id="stage">
+      <canvas id="game"></canvas>
+
+      <div class="hud" id="hud" aria-hidden="true">
+        <span class="score" id="score">0</span>
+        <span class="tallies">
+          <span class="tally"><span class="ico">🐾</span><b id="petCount">0</b></span>
+          <span class="tally"><span class="ico">🦴</span><b id="treatCount">0</b></span>
+        </span>
+      </div>
+
+      <div class="panel" id="startPanel">
+        <p class="kicker">Tel Aviv · sunset run</p>
+        <h2>Flap through the White City</h2>
+        <p class="how">
+          <span><b>Tap</b>, click or press <b>Space</b> to flap.</span>
+          <span>Grab <b>🐾 pets</b> and <b>🦴 treats</b>. Mind the Bauhaus.</span>
+        </p>
+        <button class="go" id="startBtn" type="button">Let's go</button>
+        <p class="best" id="startBest"></p>
+      </div>
+
+      <div class="panel hidden" id="overPanel">
+        <p class="kicker" id="verdict">Good run</p>
+        <h2 id="finalScore">0</h2>
+        <p class="breakdown" id="breakdown"></p>
+        <button class="go" id="againBtn" type="button">Again</button>
+        <p class="best" id="overBest"></p>
+      </div>
+    </div>
+
+    <p class="foot-note">Game pets are just for sport — the <a href="./">real counter</a> only moves on the button.</p>
+
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

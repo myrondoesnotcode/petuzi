@@ -194,18 +194,41 @@ async function ask(path) {
 
 const localCount = () => Number(localStorage.getItem(LOCAL_KEY) || 0);
 
+// Abacus rate-limits, so a burst of visitors can produce the odd 429. One bad
+// response shouldn't strand a visitor in offline mode for their whole session.
+let failures = 0;
+const FAIL_LIMIT = 3;
+
+function noteFailure() {
+  if (++failures < FAIL_LIMIT) return;
+  goOffline();
+}
+
+function noteSuccess() {
+  failures = 0;
+}
+
 function goOffline() {
   if (!live) return;
   live = false;
   render(Math.max(shown, BASELINE + localCount()));
 }
 
+const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
 async function loadCount() {
-  try {
-    render(BASELINE + await ask('get'));
-  } catch {
-    goOffline();
+  for (const delay of [0, 600, 1800]) {
+    if (delay) await wait(delay);
+    try {
+      const value = await ask('get');
+      noteSuccess();
+      render(BASELINE + value);
+      return;
+    } catch {
+      /* try again */
+    }
   }
+  goOffline();
 }
 
 async function sendHit() {
@@ -213,12 +236,13 @@ async function sendHit() {
   try {
     const value = BASELINE + await ask('hit');
     pending--;
+    noteSuccess();
     // Only trust the server number once our own clicks have all landed,
     // otherwise a slow response would rubber-band the display backwards.
     if (pending === 0 && live) render(Math.max(value, shown));
   } catch {
     pending--;
-    goOffline();
+    noteFailure();
   }
 }
 

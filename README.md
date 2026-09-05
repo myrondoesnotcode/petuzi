@@ -11,6 +11,8 @@ A single-page pet counter for Uzi. Press the button, the number goes up, Uzi get
 | `script.js` | counter + video wiring |
 | `assets/uzi.jpg` | the good boy |
 | `assets/petting-uzi.mp4` | plays on every press |
+| `game.html` / `game.css` / `game.js` | Uzi's Tel Aviv Run |
+| `assets/uzi-cut.png` | his cutout, used as the game sprite |
 
 ## The counter
 
@@ -42,3 +44,17 @@ python3 -m http.server 8000
 ```
 
 Then open http://localhost:8000
+
+## The game
+
+`game.html` is a flappy-style run through Tel Aviv — Bauhaus blocks to dodge,
+🐾 pets and 🦴 treats to collect, the Azrieli trio on the skyline. Everything
+but Uzi himself is drawn on a canvas, and the sound effects are synthesised
+with the Web Audio API, so the only asset it loads is `assets/uzi-cut.png`.
+
+The cutout was lifted from the original photo with the macOS Vision framework
+(`VNGenerateForegroundInstanceMaskRequest`), which is why the fur edges survive.
+
+Game pets are deliberately *not* wired to the shared counter — a good run
+would otherwise be worth a few hundred pets and the real total would stop
+meaning anything.

@@ -443,7 +443,7 @@ body{
   width: 100%;
   min-width: 0;          /* without this the shelf's content width leaks upward */
   max-width: 100%;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .shelf-title{
@@ -557,9 +557,45 @@ body{
 
 .toast.show{ transform: translate(-50%, 0); opacity: 1; }
 
+/* ---- play link ------------------------------------------------------------- */
+
+/* Shares the footer row with Instagram — a full-width banner cost ~70px and
+   pushed the trophy shelf off the bottom of a phone screen. */
+.play{
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 11px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 14.5px;
+  font-weight: 800;
+  letter-spacing: -.01em;
+  white-space: nowrap;
+  background: linear-gradient(100deg, var(--berry), var(--coral));
+  box-shadow: 0 12px 22px -14px rgba(224, 69, 123, .95);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.play-ico{ font-size: 15px; line-height: 1; }
+
+@media (hover: hover){
+  .play:hover{ transform: translateY(-2px); box-shadow: 0 16px 26px -14px rgba(224, 69, 123, 1); }
+}
+
+.play:focus-visible{ outline: 3px solid var(--ink); outline-offset: 3px; }
+
 /* ---- footer -------------------------------------------------------------------- */
 
-.foot{ margin-top: 9px; }
+.foot{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 11px;
+}
 
 .ig{
   display: inline-flex;
