@@ -259,6 +259,15 @@ canvas{
 
 .foot-note a{ color: inherit; }
 
+.academy-line{ display: block; margin-top: 3px; }
+
+.academy-line a{
+  color: var(--berry);
+  font-weight: 800;
+  text-decoration: none;
+  border-bottom: 1.5px solid rgba(224, 69, 123, .4);
+}
+
 /* On a short landscape phone the chrome eats the playfield — hide the extras. */
 @media (max-height: 460px){
   .bar, .foot-note{ display: none; }

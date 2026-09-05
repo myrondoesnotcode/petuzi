@@ -588,6 +588,32 @@ body{
 
 .play:focus-visible{ outline: 3px solid var(--ink); outline-offset: 3px; }
 
+/* ---- academy line ---------------------------------------------------------- */
+
+.academy{
+  margin: 12px 0 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  opacity: .9;
+}
+
+.academy a{
+  color: var(--berry);
+  font-weight: 800;
+  text-decoration: none;
+  border-bottom: 1.5px solid rgba(224, 69, 123, .4);
+  padding-bottom: 1px;
+  transition: border-color .18s ease;
+}
+
+@media (hover: hover){
+  .academy a:hover{ border-bottom-color: var(--berry); }
+}
+
+.academy a:focus-visible{ outline: 3px solid var(--berry); outline-offset: 3px; border-radius: 4px; }
+
 /* ---- footer -------------------------------------------------------------------- */
 
 .foot{
@@ -641,6 +667,7 @@ body{
   .progress{ margin: 10px 0 13px; }
   .hint{ margin-top: 8px; }
   .shelf-wrap{ margin-top: 9px; }
+  .academy{ margin-top: 9px; }
   .foot{ margin-top: 8px; }
 }
 
@@ -656,6 +683,7 @@ body{
   .hint{ margin-top: 8px; }
   .shelf-wrap{ margin-top: 8px; }
   .shelf-title{ margin-bottom: 6px; }
+  .academy{ margin-top: 7px; font-size: 11.5px; }
   .foot{ margin-top: 7px; }
   .card{ padding-bottom: 14px; }
 }
@@ -676,6 +704,7 @@ body{
   .hint{ margin-top: 7px; font-size: 11.5px; }
   .shelf-wrap{ margin-top: 8px; }
   .shelf-title{ margin-bottom: 5px; font-size: 10px; }
+  .academy{ margin-top: 6px; font-size: 11px; }
   .badge{ padding: 7px 11px; font-size: 11.5px; }
   .foot{ margin-top: 8px; }
   .ig{ min-height: 40px; padding: 9px 17px; font-size: 13.5px; }
