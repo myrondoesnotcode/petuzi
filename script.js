@@ -7,7 +7,7 @@ const COUNTER = {
   base: 'https://abacus.jasoncameron.dev',
   // Deliberately unguessable: Abacus namespaces are public and unauthenticated,
   // so an obvious name like "pet-uzi/total" is trivial for anyone to inflate.
-  ns:   'petuzi-b0ba0ed54db4',
+  ns:   'petuzi-84e398402ee5',
   key:  'pets',
 };
 

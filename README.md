@@ -17,7 +17,7 @@ A single-page pet counter for Uzi. Press the button, the number goes up, Uzi get
 GitHub Pages is static, so the shared total lives on [Abacus](https://abacus.jasoncameron.dev),
 a free no-signup counter service.
 
-- Namespace / key: `petuzi-b0ba0ed54db4` / `pets`
+- Namespace / key: `petuzi-84e398402ee5` / `pets`
 - The `738` starting figure is a display offset (`BASELINE` in `script.js`),
   not a stored value — Abacus can only count up from zero.
 
