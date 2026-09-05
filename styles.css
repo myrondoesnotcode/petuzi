@@ -33,11 +33,17 @@ html{ -webkit-text-size-adjust: 100%; }
 
 body{
   margin: 0;
-  padding: clamp(16px, 4vw, 40px) 14px calc(20px + env(safe-area-inset-bottom));
+  padding: clamp(12px, 3vw, 40px) 14px calc(14px + env(safe-area-inset-bottom));
   min-height: 100vh;
   min-height: 100dvh;
-  display: grid;
-  place-items: center;
+  /* Flex, not grid: a grid's implicit `auto` column grows to its item's
+     max-content, and the trophy shelf's intrinsic width (nine un-wrapping
+     badges) blew that track out to ~1800px, shoving the card off-screen.
+     overflow-x:auto zeroes a box's minimum size, not its max-content. */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: relative;
   overflow-x: hidden;
 
@@ -93,6 +99,7 @@ body{
   position: relative;
   z-index: 1;
   width: min(430px, 100%);
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -109,7 +116,7 @@ body{
 
 /* ---- header -------------------------------------------------------------- */
 
-.head{ text-align: center; margin-bottom: 14px; }
+.head{ text-align: center; margin-bottom: 10px; }
 
 .title{
   margin: 0;
@@ -158,7 +165,7 @@ body{
   position: relative;
   width: min(300px, 72vw);
   aspect-ratio: 1;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   transition: transform .55s cubic-bezier(.2, .9, .25, 1.15);
@@ -333,7 +340,7 @@ body{
 
 /* ---- progress to next rank ------------------------------------------------ */
 
-.progress{ width: min(280px, 88%); margin: 16px 0 20px; text-align: center; }
+.progress{ width: min(280px, 88%); margin: 13px 0 16px; text-align: center; }
 
 .track{
   height: 8px;
@@ -420,7 +427,7 @@ body{
 }
 
 .hint{
-  margin: 13px 0 0;
+  margin: 10px 0 0;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: .05em;
@@ -432,7 +439,12 @@ body{
 
 /* ---- trophy shelf ----------------------------------------------------------- */
 
-.shelf-wrap{ width: 100%; margin-top: 22px; }
+.shelf-wrap{
+  width: 100%;
+  min-width: 0;          /* without this the shelf's content width leaks upward */
+  max-width: 100%;
+  margin-top: 10px;
+}
 
 .shelf-title{
   margin: 0 0 9px;
@@ -449,6 +461,7 @@ body{
 .shelf{
   display: flex;
   gap: 8px;
+  min-width: 0;
   overflow-x: auto;
   scroll-snap-type: x proximity;
   padding: 4px 2px 10px;
@@ -493,10 +506,12 @@ body{
 
 /* ---- floating pips ----------------------------------------------------------- */
 
+/* Anchored to the button in JS rather than by a hard offset, so the pips keep
+   launching from the right place as the layout reflows across screen sizes. */
 .burst{
   position: absolute;
   left: 50%;
-  bottom: 190px;
+  top: 0;
   width: 0; height: 0;
   pointer-events: none;
   z-index: 4;
@@ -544,7 +559,7 @@ body{
 
 /* ---- footer -------------------------------------------------------------------- */
 
-.foot{ margin-top: 18px; }
+.foot{ margin-top: 9px; }
 
 .ig{
   display: inline-flex;
@@ -573,13 +588,44 @@ body{
 
 .ig:focus-visible{ outline: 3px solid var(--coral); outline-offset: 3px; }
 
-/* ---- very short phones ----------------------------------------------------------- */
+/* ---- shorter phones ---------------------------------------------------------------
+   Two steps down rather than one, so an iPhone SE gets the whole thing —
+   portrait, count, button — without scrolling for the primary action. */
 
-@media (max-height: 720px){
-  .frame{ width: min(240px, 60vw); }
+@media (max-height: 800px){
+  body{ padding-top: 12px; padding-bottom: calc(10px + env(safe-area-inset-bottom)); }
+  .card{ padding-top: 20px; padding-bottom: 18px; }
+  .head{ margin-bottom: 8px; }
+  .frame{ width: min(252px, 60vw); margin-bottom: 14px; }
   .odo{ font-size: clamp(42px, 12vw, 56px); }
-  .progress{ margin: 12px 0 15px; }
-  .shelf-wrap{ margin-top: 16px; }
+  .count-label{ margin-top: 6px; }
+  .progress{ margin: 10px 0 13px; }
+  .pet-face{ padding: 16px clamp(44px, 14vw, 58px); }
+  .hint{ margin-top: 8px; }
+  .shelf-wrap{ margin-top: 10px; }
+  .shelf-title{ margin-bottom: 6px; }
+  .foot{ margin-top: 8px; }
+}
+
+@media (max-height: 700px){
+  body{ padding-top: 9px; padding-bottom: calc(8px + env(safe-area-inset-bottom)); }
+  .card{ padding-top: 16px; padding-bottom: 14px; border-radius: 26px; }
+  .title{ font-size: clamp(31px, 9vw, 40px); }
+  .sub{ margin-top: 6px; padding: 4px 11px; font-size: 12px; }
+  .head{ margin-bottom: 6px; }
+  .frame{ width: min(196px, 50vw); margin-bottom: 11px; }
+  .odo{ font-size: clamp(36px, 10.5vw, 46px); }
+  .count-label{ margin-top: 4px; font-size: 11.5px; letter-spacing: .06em; }
+  .progress{ margin: 8px 0 10px; }
+  .track{ height: 7px; }
+  .to-next{ margin-top: 7px; font-size: 11.5px; }
+  .pet-face{ padding: 14px clamp(38px, 12vw, 52px); font-size: clamp(19px, 5.2vw, 22px); }
+  .hint{ margin-top: 7px; font-size: 11.5px; }
+  .shelf-wrap{ margin-top: 9px; }
+  .shelf-title{ margin-bottom: 5px; font-size: 10px; }
+  .badge{ padding: 7px 11px; font-size: 11.5px; }
+  .foot{ margin-top: 8px; }
+  .ig{ min-height: 40px; padding: 9px 17px; font-size: 13.5px; }
 }
 
 /* ---- reduced motion ---------------------------------------------------------------- */

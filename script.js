@@ -262,6 +262,17 @@ function pip(text) {
   el.addEventListener('animationend', () => el.remove(), { once: true });
 }
 
+// Park the pip origin on the button's top edge, whatever the layout is doing.
+function placeBurst() {
+  const c = document.querySelector('.card').getBoundingClientRect();
+  const b = btn.getBoundingClientRect();
+  burst.style.left = `${b.left - c.left + b.width / 2}px`;
+  burst.style.top = `${b.top - c.top}px`;
+}
+
+addEventListener('resize', placeBurst);
+addEventListener('orientationchange', placeBurst);
+
 let toastTimer;
 
 function celebrate(rank) {
@@ -289,6 +300,7 @@ function pet(e) {
   localStorage.setItem(LOCAL_KEY, String(localCount() + 1));
 
   playClip();
+  placeBurst();
   pip();
 
   if (crossed) celebrate(crossed);
@@ -317,5 +329,6 @@ frame.addEventListener('keydown', (e) => {
 });
 
 buildShelf();
+placeBurst();
 render(BASELINE);
 loadCount();
