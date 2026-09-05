@@ -248,6 +248,13 @@ async function sendHit() {
 
 /* ---- the clip ----------------------------------------------------------------- */
 
+// The clip is the payoff, so it preloads by default — but not at the expense of
+// someone's data plan.
+const conn = navigator.connection;
+if (conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || ''))) {
+  clip.preload = 'metadata';
+}
+
 let hideTimer;
 
 function playClip() {

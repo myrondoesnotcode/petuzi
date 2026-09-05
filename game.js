@@ -305,7 +305,10 @@ const uziImg = new Image();
 let uziReady = false;
 const UZI_AR = 291 / 384;                 // the cutout's own aspect ratio
 uziImg.onload = () => { uziReady = true; };
-uziImg.src = 'assets/uzi-cut.png';
+uziImg.onerror = () => {                  // WebP alpha is near-universal; PNG is the net
+  if (uziImg.src.endsWith('.webp')) uziImg.src = 'assets/uzi-cut.png';
+};
+uziImg.src = 'assets/uzi-cut.webp';
 
 function rr(x, y, w, h, r) {
   ctx.beginPath();

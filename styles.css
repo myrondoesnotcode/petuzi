@@ -198,6 +198,8 @@ body{
   box-shadow: 0 0 0 5px var(--paper), 0 22px 46px -14px var(--shadow);
 }
 
+.stage picture{ display: contents; }   /* keeps .photo positioned against .stage */
+
 .photo, .clip{
   position: absolute;
   inset: 0;
@@ -207,9 +209,8 @@ body{
   display: block;
 }
 
-/* The clip is vertical phone video (406x720), so a dead-centre square crop
-   cuts Uzi's head off the top. Bias it upward to keep him and the hand in. */
-.clip{ object-position: center 38%; }
+/* The clip is now encoded as the exact square the circle shows, so there is
+   no crop left to position. */
 
 .clip{ opacity: 0; visibility: hidden; transition: opacity .16s ease; }
 .photo{ transition: opacity .16s ease .04s; }
@@ -629,6 +630,20 @@ body{
    Two steps down rather than one, so an iPhone SE gets the whole thing —
    portrait, count, button — without scrolling for the primary action. */
 
+/* Tall phones (a 14/15 at 844) fall between the other steps and were pushing
+   the footer past the fold. Trims margins first, the portrait only slightly. */
+@media (max-height: 880px){
+  body{ padding-bottom: calc(10px + env(safe-area-inset-bottom)); }
+  .head{ margin-bottom: 8px; }
+  .frame{ width: min(300px, 68vw); margin-bottom: 12px; }
+  .tally{ margin-top: 4px; }
+  .count-label{ margin-top: 6px; }
+  .progress{ margin: 10px 0 13px; }
+  .hint{ margin-top: 8px; }
+  .shelf-wrap{ margin-top: 9px; }
+  .foot{ margin-top: 8px; }
+}
+
 @media (max-height: 800px){
   body{ padding-top: 12px; padding-bottom: calc(10px + env(safe-area-inset-bottom)); }
   .card{ padding-top: 20px; padding-bottom: 18px; }
@@ -639,9 +654,10 @@ body{
   .progress{ margin: 10px 0 13px; }
   .pet-face{ padding: 16px clamp(44px, 14vw, 58px); }
   .hint{ margin-top: 8px; }
-  .shelf-wrap{ margin-top: 10px; }
+  .shelf-wrap{ margin-top: 8px; }
   .shelf-title{ margin-bottom: 6px; }
-  .foot{ margin-top: 8px; }
+  .foot{ margin-top: 7px; }
+  .card{ padding-bottom: 14px; }
 }
 
 @media (max-height: 700px){
@@ -658,7 +674,7 @@ body{
   .to-next{ margin-top: 7px; font-size: 11.5px; }
   .pet-face{ padding: 14px clamp(38px, 12vw, 52px); font-size: clamp(19px, 5.2vw, 22px); }
   .hint{ margin-top: 7px; font-size: 11.5px; }
-  .shelf-wrap{ margin-top: 9px; }
+  .shelf-wrap{ margin-top: 8px; }
   .shelf-title{ margin-bottom: 5px; font-size: 10px; }
   .badge{ padding: 7px 11px; font-size: 11.5px; }
   .foot{ margin-top: 8px; }

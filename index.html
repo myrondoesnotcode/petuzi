@@ -30,13 +30,16 @@
     <div class="frame" id="frame" role="button" tabindex="0" aria-label="Pet Uzi">
       <span class="halo" aria-hidden="true"></span>
       <span class="stage">
-        <img
-          class="photo"
-          id="photo"
-          src="assets/uzi.jpg"
-          alt="Uzi, a big fluffy tan-and-black dog, tilting his head at the camera in a cafe"
-          decoding="async"
-        />
+        <picture>
+          <source srcset="assets/uzi.webp" type="image/webp" />
+          <img
+            class="photo"
+            id="photo"
+            src="assets/uzi.jpg"
+            alt="Uzi, a big fluffy tan-and-black dog, tilting his head at the camera in a cafe"
+            decoding="async"
+          />
+        </picture>
         <video
           class="clip"
           id="clip"
@@ -68,7 +71,7 @@
       </span>
     </button>
 
-    <p class="hint"><span class="spk">🔊</span> sound on — you'll want it</p>
+    <p class="hint"><span class="spk">🔊</span> sound on - you'll want it</p>
 
     <section class="shelf-wrap">
       <h2 class="shelf-title">Trophy shelf</h2>
