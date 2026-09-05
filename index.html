@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Pet Uzi</title>
+<meta name="description" content="A very good dog. Press the button. Pet Uzi." />
+<meta property="og:title" content="Pet Uzi" />
+<meta property="og:description" content="A very good dog. Press the button. Pet Uzi." />
+<meta property="og:image" content="assets/uzi.jpg" />
+<meta name="theme-color" content="#fff7ec" />
+<link rel="icon" href="assets/uzi.jpg" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="bg" aria-hidden="true">
+    <span class="blob blob-a"></span>
+    <span class="blob blob-b"></span>
+    <span class="blob blob-c"></span>
+  </div>
+
+  <main class="card">
+
+    <header class="head">
+      <h1 class="title">Pet<span class="title-gap"></span>Uzi</h1>
+      <p class="sub"><span class="dot"></span>a very good dog</p>
+    </header>
+
+    <div class="frame" id="frame" role="button" tabindex="0" aria-label="Pet Uzi">
+      <span class="halo" aria-hidden="true"></span>
+      <span class="stage">
+        <img
+          class="photo"
+          id="photo"
+          src="assets/uzi.jpg"
+          alt="Uzi, a big fluffy tan-and-black dog, tilting his head at the camera in a cafe"
+          decoding="async"
+        />
+        <video
+          class="clip"
+          id="clip"
+          src="assets/petting-uzi.mp4"
+          playsinline
+          preload="auto"
+          disablepictureinpicture
+        ></video>
+      </span>
+      <span class="ring" id="ring" aria-hidden="true"></span>
+      <span class="rank" id="rank"></span>
+    </div>
+
+    <section class="tally">
+      <div class="odo" id="odo" aria-hidden="true"></div>
+      <p class="sr" id="srCount" aria-live="polite">0 pets</p>
+      <p class="count-label" id="countLabel">pets and counting</p>
+    </section>
+
+    <section class="progress" id="progress">
+      <div class="track"><span class="fill" id="fill"></span></div>
+      <p class="to-next" id="toNext"></p>
+    </section>
+
+    <button class="pet" id="petBtn" type="button">
+      <span class="pet-face">
+        <span class="pet-text">Pet Uzi</span>
+        <span class="shine" aria-hidden="true"></span>
+      </span>
+    </button>
+
+    <p class="hint"><span class="spk">🔊</span> sound on — you'll want it</p>
+
+    <section class="shelf-wrap">
+      <h2 class="shelf-title">Trophy shelf</h2>
+      <div class="shelf" id="shelf"></div>
+    </section>
+
+    <div class="burst" id="burst" aria-hidden="true"></div>
+    <div class="toast" id="toast" role="status"></div>
+
+    <footer class="foot">
+      <a class="ig" id="igLink" href="https://www.instagram.com/joyrideuzi" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <circle cx="17.6" cy="6.4" r="1.25" fill="currentColor"/>
+        </svg>
+        <span id="igHandle">@joyrideuzi</span>
+      </a>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
